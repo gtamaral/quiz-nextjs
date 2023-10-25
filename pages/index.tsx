@@ -3,7 +3,8 @@ import { Inter } from 'next/font/google'
 import Questao from '@/components/Questao'
 import QuestaoModel from '@/model/questao'
 import RespostaModel from '@/model/resposta'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import Botao from '@/components/Botao'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +17,7 @@ const questaoMoc = new QuestaoModel(1, "melhor cor?", [
 
 export default function Home() {
   const [questao, setQuestao] = useState(questaoMoc)
-
+  
   function respostaFornecida(indice: number) {
     setQuestao(questao.responderCom(indice) )
     console.log(indice)
@@ -32,12 +33,14 @@ export default function Home() {
   return (
     <div style={{
       display: 'flex',
+      flexDirection: 'column',
       height: '100vh',
       justifyContent: 'center',
       alignItems: 'center'
 
     }}>
-      <Questao valor={questao} respostaFornecida={respostaFornecida} tempoEsgotado={tempoEsgotado}/>
+      <Questao valor={questao} tempoParaResposta={6} respostaFornecida={respostaFornecida} tempoEsgotado={tempoEsgotado}/>
+      <Botao texto='teste do botao' href='/resultado'/>
 
     </div>
   )
