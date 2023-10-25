@@ -17,6 +17,7 @@ const letras = [
 
 interface QuestaoProps {
     valor: QuestaoModel
+    respostaFornecida: (indice: number) => void
 }
 
 
@@ -25,7 +26,7 @@ const Questao = (props: QuestaoProps) => {
 
     function renderizarRespostas() {
         return questao.respostas.map((resposta, i) => {
-            return <Resposta key={i} valor={resposta} indice={i} letra={letras[i].valor} corFundoLetra={letras[i].cor} />
+            return <Resposta key={i} valor={resposta} indice={i} letra={letras[i].valor} corFundoLetra={letras[i].cor} respostaFornecida={props.respostaFornecida} />
         })
     }
 
