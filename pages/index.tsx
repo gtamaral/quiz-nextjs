@@ -1,24 +1,12 @@
 import { Inter } from 'next/font/google'
 import QuestaoModel from '../model/questao'
-import RespostaModel from '@/model/resposta'
 import { useEffect, useRef, useState } from 'react'
 import Questionario from '../components/Questionario'
 
+import { useRouter } from 'next/router'
+
 const inter = Inter({ subsets: ['latin'] })
 
-const questaoMoc = new QuestaoModel(1, "melhor cor?", [
-    RespostaModel.errada('verde'),
-    RespostaModel.errada('preto'),
-    RespostaModel.errada('vermelhor'),
-    RespostaModel.certa('azul'),
-  ])
-
-// const questaoMoc2 = new QuestaoModel(1, "melhor cor2222?", [
-//     RespostaModel.errada('verde'),
-//     RespostaModel.errada('preto'),
-//     RespostaModel.errada('vermelhor'),
-//     RespostaModel.certa('azul'),
-//   
 
 const BASE_URL = 'http://localhost:3000/api'
 
@@ -26,8 +14,10 @@ const BASE_URL = 'http://localhost:3000/api'
 
 export default function Home() {
 
+  const router = useRouter( )
+
   const [idsDasQuestoes, setIdsDasQuestoes] = useState<number[]>([])
-  const [questao, setQuestao] = useState<QuestaoModel>(questaoMoc)
+  const [questao, setQuestao] = useState<QuestaoModel>()
   const [respostasCertas, setRespostasCertas] = useState<number>(0)
 
 
@@ -63,29 +53,44 @@ export default function Home() {
 
 
   
-
-  
   function questaoRespondida(questaoRespondida: QuestaoModel) {
     setQuestao(questaoRespondida)
     const acertou = questaoRespondida.acertou
     setRespostasCertas(respostasCertas + (acertou ? 1 : 0))
-    console.log(respostasCertas + (acertou ? 1 : 0))
-  }
-
-  function irPraProximoPasso() {
     
   }
-  
-  return (
-    // <div style={{
-    //   display: 'flex',
-    //   flexDirection: 'column',
-    //   height: '100vh',
-    //   justifyContent: 'center',
-    //   alignItems: 'center'
 
-    // }}>
-      <Questionario questao={questao} ultima={false} questaoRespondida={questaoRespondida} irPraProximoPasso={irPraProximoPasso}/>
+  const idProximaPergunta = () => {
+    if(questao) {
+      const proximoIndice = idsDasQuestoes.indexOf(questao.id) + 1
+      return idsDasQuestoes[proximoIndice]
+    }
+  }
+
+  const irPraProximoPasso = () => {
+    const proximoId = idProximaPergunta()
+    proximoId ? irPraProximaQuestao(proximoId) : finalizar()
+  }
+
+  const irPraProximaQuestao = (proximoId: number) => {
+    carregarQuestao(proximoId)
+  }
+  
+  const finalizar = () => {
+      router.push({
+        pathname: "/resultado",
+        query: {
+          total: idsDasQuestoes.length,
+          certas: respostasCertas
+        }
+      })
+
+  }
+
+
+  return (
+   
+      <Questionario questao={questao} ultima={idProximaPergunta() === undefined} questaoRespondida={questaoRespondida} irPraProximoPasso={irPraProximoPasso}/>
       
 
     
