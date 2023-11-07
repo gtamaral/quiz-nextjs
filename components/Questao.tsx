@@ -4,7 +4,7 @@ import styles from "../styles/Questao.module.css";
 
 // components
 import Enunciado from "./Enunciado";
-import QuestaoModel from "@/model/questao";
+import QuestaoModel from "../model/questao";
 import Resposta from "./Resposta";
 import Temporizador from "./Temporizador";
 

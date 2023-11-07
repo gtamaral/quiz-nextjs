@@ -1,9 +1,10 @@
-import { embaralhar } from "@/functions/arrays"
+import { embaralhar } from "../../../functions/arrays"
 import questoes from "../bancoDeQuestoes"
 
-const index = (req, res) => {
+const questionario = (req: any, res: any) => {
     const ids = questoes.map(questao => questao.id)
+    console.log(ids)
     res.status(200).json(embaralhar(ids))
 }
 
-export default index
+export default questionario;

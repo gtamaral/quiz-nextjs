@@ -1,4 +1,4 @@
-import QuestaoModel from "@/model/questao";
+import QuestaoModel from "../../model/questao";
 import RespostaModel from "@/model/resposta";
 
 const questoes: QuestaoModel[] = [
