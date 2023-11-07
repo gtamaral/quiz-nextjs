@@ -28,6 +28,7 @@ export default function Home() {
 
   const [idsDasQuestoes, setIdsDasQuestoes] = useState<number[]>([])
   const [questao, setQuestao] = useState<QuestaoModel>(questaoMoc)
+  const [respostasCertas, setRespostasCertas] = useState<number>(0)
 
 
 
@@ -64,8 +65,11 @@ export default function Home() {
   
 
   
-  function questaoRespondida() {
-
+  function questaoRespondida(questaoRespondida: QuestaoModel) {
+    setQuestao(questaoRespondida)
+    const acertou = questaoRespondida.acertou
+    setRespostasCertas(respostasCertas + (acertou ? 1 : 0))
+    console.log(respostasCertas + (acertou ? 1 : 0))
   }
 
   function irPraProximoPasso() {
