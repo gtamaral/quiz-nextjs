@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 const inter = Inter({ subsets: ['latin'] })
 
 
-const BASE_URL = "/api"
+const BASE_URL = "https://quiz-nextjs-gtamaral.vercel.app/api"
 
 
 
