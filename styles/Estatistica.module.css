@@ -1,3 +1,4 @@
+
 .estatistica {
     display: flex;
     flex-direction: column;
@@ -9,8 +10,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 180px;
-    width: 180px;
+    height: 150px;
+    width: 150px;
     border-radius: 90px;
     font-size: 4rem;
 

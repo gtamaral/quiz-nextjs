@@ -5,6 +5,7 @@
     height: 5em;
     width: 100%;
     margin: 10px;
+
     
 }
 
@@ -12,6 +13,12 @@
     display: flex;
     flex: 1;
     position: relative;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.respostaRevelada.conteudoResposta {
+    transform: rotateY(180deg);
 }
 
 .frente, .verso {
@@ -19,6 +26,12 @@
     height: 100%;
     width: 100%;
     position: absolute;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.verso {
+    transform: rotateY(180deg);
 }
 
 .frente {
@@ -69,3 +82,15 @@
     margin-right: 20px;
     color: #FFf;
 }
+
+
+
+@media (max-width: 1200px) {
+  .valor{
+    font-size: 1.8rem;
+  } 
+  .letra {
+    font-weight: bold;
+    color: #000;
+  }
+} 

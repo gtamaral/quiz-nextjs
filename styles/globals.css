@@ -30,8 +30,17 @@ body {
 html, body {
   padding: 0;
   margin: 0;
-  background-color: #6c54d8;
+  background-color: #5b45bf;
   color: #fff;
+  /* transform: scale(0.8); */
+  /* margin-top: 2rem; */
+  margin-bottom: 10px;
+}
+
+@media (max-width: 1200px) {
+  html,body {
+    transform: scale(0.79);
+  }
 }
 
 a {
@@ -42,4 +51,5 @@ a {
 * {
   box-sizing: border-box;
   font-family: 'Popins', sans-serif;
+  /* transform: scale(0.94); */
 }
